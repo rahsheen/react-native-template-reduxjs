@@ -1,18 +1,18 @@
-# React Native Template Redux TypeScript
+# React Native Template Redux
 
 <p>
-  <a href="https://github.com/rahsheen/react-native-template-redux-typescript#readme">
+  <a href="https://github.com/rahsheen/react-native-template-redux#readme">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" target="_blank" />
   </a>
-  <a href="https://github.com/rahsheen/react-native-template-redux-typescript/graphs/commit-activity">
+  <a href="https://github.com/rahsheen/react-native-template-redux/graphs/commit-activity">
     <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" target="_blank" />
   </a>
-  <a href="https://github.com/rahsheen/react-native-template-redux-typescript/blob/master/LICENSE">
+  <a href="https://github.com/rahsheen/react-native-template-redux/blob/master/LICENSE">
     <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" target="_blank" />
   </a>
 </p>
 
-> Clean and minimalist React Native template for a quick start with Redux and TypeScript.
+> Clean and minimalist React Native template for a quick start with Redux.
 
 ## :star: Features
 
@@ -24,7 +24,7 @@
 ## :arrow_forward: Usage
 
 ```sh
-npx react-native init MyApp --template react-native-template-redux-typescript
+npx react-native init MyApp --template react-native-template-redux
 ```
 
 ### Usage with older versions of React Native
@@ -32,7 +32,7 @@ npx react-native init MyApp --template react-native-template-redux-typescript
 #### e.g. `react-native@0.62.x`
 
 ```sh
-npx react-native init MyApp --template react-native-template-redux-typescript@6.4.*
+npx react-native init MyApp --template react-native-template-redux@6.4.*
 ```
 
 See the below table to find out which version of the template to use.
