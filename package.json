@@ -1,6 +1,6 @@
 {
   "name": "@rahsheen/react-native-template-redux",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Clean and minimalist React Native template for a quick start with Redux",
   "scripts": {
     "test": "exit 0",

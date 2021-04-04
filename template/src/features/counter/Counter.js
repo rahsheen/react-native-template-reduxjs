@@ -1,83 +1,51 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
+import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { AsyncButton } from '../../components/AsyncButton';
+import { decrement, increment, incrementAsync, incrementByAmount, selectCount } from './counterSlice';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  decrement,
-  increment,
-  incrementByAmount,
-  incrementAsync,
-  selectCount,
-} from './counterSlice';
-import {
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from 'react-native';
 
 export function Counter() {
   const [incrementAmount, setIncrementAmount] = useState('2');
 
-  // The `state` arg is correctly typed as `RootState` already
   const count = useSelector(selectCount);
+  const status = useSelector(state => state.counter.status);
   const dispatch = useDispatch();
 
-  return (
-    <View>
+  return <View>
       <View style={styles.row}>
-        <TouchableOpacity
-          style={{...styles.button, ...styles.smallButton}}
-          aria-label="Increment value"
-          onPress={() => dispatch(increment())}>
+        <TouchableOpacity style={styles.button} onPress={() => dispatch(increment())}>
           <Text style={styles.buttonText}>+</Text>
         </TouchableOpacity>
         <Text style={styles.value}>{count}</Text>
-        <TouchableOpacity
-          style={{...styles.button, ...styles.smallButton}}
-          aria-label="Decrement value"
-          onPress={() => dispatch(decrement())}>
+        <TouchableOpacity style={styles.button} onPress={() => dispatch(decrement())}>
           <Text style={styles.buttonText}>-</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.row}>
-        <TextInput
-          style={styles.textbox}
-          aria-label="Set increment amount"
-          value={incrementAmount}
-          keyboardType="numeric"
-          onChangeText={setIncrementAmount}
-        />
-        <View style={styles.column}>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() =>
-              dispatch(incrementByAmount(Number(incrementAmount) || 0))
-            }>
+        <TextInput style={styles.textbox} value={incrementAmount} keyboardType="numeric" onChangeText={setIncrementAmount} />
+        <View>
+          <TouchableOpacity style={styles.button} onPress={() => dispatch(incrementByAmount(Number(incrementAmount) || 0))}>
             <Text style={styles.buttonText}>Add Amount</Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() =>
-              dispatch(incrementAsync(Number(incrementAmount) || 0))
-            }>
+          <AsyncButton style={styles.button} disabled={status !== 'idle'} onPress={() => dispatch(incrementAsync(Number(incrementAmount) || 0))}>
             <Text style={styles.buttonText}>Add Async</Text>
-          </TouchableOpacity>
+          </AsyncButton>
         </View>
       </View>
-    </View>
-  );
+    </View>;
 }
 
 const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
-    padding: 24,
-    backgroundColor: '#eaeaea',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
+    flexWrap: 'wrap'
   },
-  column: {
-    justifyContent: 'space-between',
+  value: {
+    fontSize: 78,
+    paddingHorizontal: 16,
+    marginTop: 2
   },
   button: {
     backgroundColor: 'rgba(112, 76, 182, 0.1)',
@@ -85,21 +53,12 @@ const styles = StyleSheet.create({
     paddingLeft: 12,
     paddingRight: 12,
     paddingBottom: 4,
-    margin: 2,
-  },
-  smallButton: {
-    width: 48,
-    height: 48,
+    margin: 2
   },
   buttonText: {
     color: 'rgb(112, 76, 182)',
     fontSize: 32,
-    textAlign: 'center',
-  },
-  value: {
-    fontSize: 78,
-    marginTop: 2,
-    fontFamily: 'Courier New',
+    textAlign: 'center'
   },
   textbox: {
     fontSize: 48,
@@ -108,6 +67,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginRight: 8,
     borderWidth: 1,
-    justifyContent: 'center',
-  },
+    justifyContent: 'center'
+  }
 });
